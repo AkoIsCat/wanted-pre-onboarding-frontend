@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 
 import { getTodoApi } from '../../api/todo';
 import {
@@ -12,8 +12,6 @@ const TodoList = () => {
   const todoData = useContext(TodoStateContext);
   const dispatch = useContext(TodoDispatchContext);
 
-  const [inputValue, setInputValue] = useState('');
-
   useEffect(() => {
     const getData = () =>
       getTodoApi()
@@ -26,11 +24,7 @@ const TodoList = () => {
     if (localStorage.getItem('access_token')) {
       getData();
     }
-  }, [inputValue, dispatch]);
-
-  const updateValue = (data) => {
-    setInputValue(data);
-  };
+  }, [dispatch]);
 
   return (
     <div className="todoList">
@@ -40,7 +34,6 @@ const TodoList = () => {
           id={item.id}
           todo={item.todo}
           isCompleted={item.isCompleted}
-          updateValue={updateValue}
         />
       ))}
     </div>

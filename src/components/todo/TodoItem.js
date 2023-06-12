@@ -53,7 +53,7 @@ const ListItem = styled.li`
   }
 `;
 
-const TodoItem = ({ id, todo, isCompleted, updateValue }) => {
+const TodoItem = ({ id, todo, isCompleted }) => {
   const [activateEdit, setActivateEdit] = useState(false);
   const [inputValue, setInputValue] = useState(todo);
   const [isChecked, setIsChecked] = useState(isCompleted);
@@ -95,9 +95,8 @@ const TodoItem = ({ id, todo, isCompleted, updateValue }) => {
       isCompleted,
     };
     updateTodoApi(id, inputValue, isCompleted);
-    dispatch({ type: 'EDIT', item: updatedTodo });
+    dispatch({ type: 'EDIT', todo: updatedTodo });
     setActivateEdit(false);
-    updateValue(inputValue);
   };
 
   return (
@@ -110,7 +109,7 @@ const TodoItem = ({ id, todo, isCompleted, updateValue }) => {
           checked={isChecked}
           onChange={onChangeCheckboxHandler}
         />
-        {!activateEdit && <span className="todo">{inputValue}</span>}
+        {!activateEdit && <span className="todo">{todo}</span>}
         {activateEdit && (
           <input
             data-testid="modify-input"

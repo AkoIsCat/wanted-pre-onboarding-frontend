@@ -57,7 +57,6 @@ export const updateTodoApi = async (id, todo, isCompleted) => {
         body: JSON.stringify({ todo, isCompleted }),
       }
     );
-    console.log('api todo', todo);
     if (response !== undefined) {
       const result = await response.json();
       return result;

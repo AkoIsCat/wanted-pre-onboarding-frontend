@@ -13,8 +13,8 @@ const reducer = (state, action) => {
           : item
       );
     case 'EDIT':
-      return state.map((task) =>
-        task.id === action.item.id ? { ...action.item } : task
+      return state.map((item) =>
+        item.id === action.todo.id ? { ...item, todo: action.todo.todo } : item
       );
     case 'DELETE':
       return state.filter((item) => item.id !== action.id);
